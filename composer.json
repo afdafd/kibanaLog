@@ -1,5 +1,5 @@
 {
-    "name": "yb/kibana-log",
+    "name": "youBao/kibana-log",
     "description": "公用的日志组件",
     "type": "library",
     "require": {
