@@ -12,7 +12,7 @@ class ESLog
     public static $DEFAULT_TOPIC = "test";
 
     /**
-     * 日志保存
+     * 日志记录
      *
      * @param $message         需要记录的数据信息
      * @param string $topic    队列主题名称
@@ -37,12 +37,19 @@ class ESLog
             $producer = new \Kafka\Producer(function () {
                 return self::$data;
             });
-            $producer->success(function ($result) {});
-            $producer->error(function ($errorCode) {});
+
+            $producer->success(function ($result) {
+                return self::returnDataFromSendAfter("success", $result);
+            });
+
+            $producer->error(function ($errorCode) {
+                return self::returnDataFromSendAfter("error", $errorCode);
+            });
+
             $producer->send(true);
 
         } catch (\Exception $e) {
-
+            return self::returnDataFromSendAfter("error", $e->getMessage());
         }
     }
 
@@ -67,15 +74,12 @@ class ESLog
                 'USER_IP'  => self::getRemoteIP(),
             ];
 
-            ESLog::Save(
+            return ESLog::Save(
                 json_encode($message,JSON_UNESCAPED_UNICODE),
                 self::$DEFAULT_TOPIC
             );
         } catch (\Exception $e) {
-            ESLog::Save(
-                "调用SaveRequestLog()方法发生错误：" . $e->getMessage(),
-                self::$DEFAULT_TOPIC
-            );
+            return self::returnDataFromSendAfter("error", "调用SaveRequestLog()方法发生错误：" . $e->getMessage());
         }
     }
 
@@ -139,5 +143,19 @@ class ESLog
         } catch (\Exception $e) {
             return "获取响应数据失败：" . $e->getMessage() . "|" . $e->getLine() . "|" . $e->getFile();
         }
+    }
+
+    /**
+     * 返回最终结果
+     *
+     * @param $status 状态 success | error
+     * @param $msg 结果信息
+     */
+    private static function returnDataFromSendAfter($status, $msg = "")
+    {
+        return [
+            "status" => $status,
+            "msg" => $msg,
+        ];
     }
 }

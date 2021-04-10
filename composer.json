@@ -19,8 +19,8 @@
         "yiisoft/yii2": "^2.0@dev"
     },
     "autoload": {
-      "psr-4": {
-          "KinBa\\": "kinbana/"
-      }
+        "psr-4": {
+            "KinBa\\": "kinbana/"
+        }
     }
 }
