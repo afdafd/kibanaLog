@@ -3,9 +3,7 @@
     "description": "公用的日志组件",
     "type": "library",
     "require": {
-      "php": ">=7.1.0"
-    },
-    "require-dev": {
+      "php": ">=7.1.0",
       "nmred/kafka-php": "0.2.*"
     },
     "autoload": {
@@ -20,5 +18,5 @@
             "email": "ffffff_name@163.com"
         }
     ],
-    "minimum-stability": "dev"
+    "minimum-stability": "stable"
 }
