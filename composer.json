@@ -3,7 +3,9 @@
     "description": "公用的日志组件",
     "type": "library",
     "require": {
-      "php": ">=7.0.0",
+      "php": ">=7.1.0"
+    },
+    "require-dev": {
       "nmred/kafka-php": "0.2.*"
     },
     "autoload": {
