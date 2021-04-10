@@ -110,7 +110,7 @@ class ESLog
      */
     private static function getHeaderInfo()
     {
-        try{
+        try {
             return \Yii::$app->request->headers->toArray();
         } catch (\Exception $e) {
             return "获取header信息失败：".$e->getMessage() . "|" . $e->getLine() . "|" . $e->getFile();

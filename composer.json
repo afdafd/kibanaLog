@@ -1,18 +1,7 @@
 {
     "name": "you-bo/kibana-log",
-    "description": "公用的日志组件",
+    "description": "内部公用的日志组件",
     "type": "library",
-    "require": {
-      "php": ">=7.1.0"
-    },
-    "require-dev": {
-      "nmred/kafka-php": "0.2.*"
-    },
-    "autoload": {
-      "psr-4": {
-          "KinBa\\": "kinbana/"
-      }
-    },
     "license": "MIT",
     "authors": [
         {
@@ -20,5 +9,18 @@
             "email": "ffffff_name@163.com"
         }
     ],
-    "minimum-stability": "stable"
+    "support": {
+        "email": "ffffff_name@163.com"
+    },
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=7.1.0",
+        "nmred/kafka-php": "0.2.*",
+        "yiisoft/yii2": "^2.0@dev"
+    },
+    "autoload": {
+      "psr-4": {
+          "KinBa\\": "kinbana/"
+      }
+    }
 }
